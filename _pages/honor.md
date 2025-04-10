@@ -1,59 +1,58 @@
 ---
 layout: page
-title: Projects
-permalink: /projects/
+title: Honors & Awards
+permalink: /honor/
 description:
 nav: true
-nav_order: 4
+nav_order: 5
 ---
 
 <!-- Lightbox Modal -->
-<div id="lightbox-modal" class="lightbox-modal">
+<div id="honor-lightbox-modal" class="lightbox-modal">
   <span class="lightbox-close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
-  <div id="lightbox-caption"></div>
+  <img class="lightbox-content" id="honor-lightbox-img">
+  <div id="honor-lightbox-caption"></div>
 </div>
 
-<div class="projects-direct">
+<div class="honors">
 
   {% for entry in site.data.cv %}
-    {% if entry.title == "Projects" %}
-      {% for project in entry.contents %}
-      
+    {% if entry.title == "Honors and Awards" %}
+      {% for honor in entry.contents %}
       <div class="card mt-3 p-3">
         <div class="row no-gutters">
-          {% if project.image %}
+          {% if honor.image %}
           <div class="col-md-4">
-            <img src="{{ project.image | relative_url }}" class="card-img project-image lightbox-trigger" alt="{{ project.title }}" data-title="{{ project.title }}">
+            <img src="{{ honor.image | relative_url }}" class="card-img honor-image lightbox-trigger" alt="{{ honor.title }}" data-title="{{ honor.title }}">
           </div>
           <div class="col-md-8">
           {% else %}
           <div class="col-12">
           {% endif %}
             <div class="card-body">
-              <h5 class="card-title">{{ project.title }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{ project.institution }}</h6>
-              <p class="card-text">{{ project.year }}</p>
-              {% if project.description %}
+              <h5 class="card-title">{{ honor.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ honor.institution }}</h6>
+              <p class="card-text">{{ honor.year }}</p>
+              {% if honor.description %}
               <ul class="card-text font-weight-light">
-                {% for item in project.description %}
+                {% for item in honor.description %}
                 <li>{{ item }}</li>
                 {% endfor %}
               </ul>
               {% endif %}
               
-              {% if project.links %}
-              <div class="project-links mt-3">
-                {% for link in project.links %}
-                  <a href="{{ link.url }}" target="_blank" class="btn btn-sm project-link-btn">
+              {% if honor.links %}
+              <div class="honor-links mt-3">
+                {% for link in honor.links %}
+                  <a href="{{ link.url }}" target="_blank" class="btn btn-sm honor-link-btn">
                     {{ link.name }}
                   </a>
                 {% endfor %}
               </div>
-              {% elsif project.url %}
-              <div class="project-links mt-3">
-                <a href="{{ project.url }}" target="_blank" class="btn btn-sm project-link-btn">
-                  Visit Project
+              {% elsif honor.url %}
+              <div class="honor-links mt-3">
+                <a href="{{ honor.url }}" target="_blank" class="btn btn-sm honor-link-btn">
+                  Visit Link
                 </a>
               </div>
               {% endif %}
@@ -61,7 +60,6 @@ nav_order: 4
           </div>
         </div>
       </div>
-      
       {% endfor %}
     {% endif %}
   {% endfor %}
@@ -80,20 +78,20 @@ nav_order: 4
   .card-subtitle {
     color: var(--global-text-color-light);
   }
-  .project-link-btn {
+  .honor-link-btn {
     background-color: var(--global-theme-color);
     color: white;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
   }
-  .project-link-btn:hover {
+  .honor-link-btn:hover {
     background-color: var(--global-hover-color);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
-  .project-image {
+  .honor-image {
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -101,10 +99,10 @@ nav_order: 4
     max-height: 250px;
     display: block;
     margin: 0 auto;
-    cursor: pointer; /* Add pointer cursor to indicate clickable */
+    cursor: pointer;
   }
   @media (max-width: 767.98px) {
-    .project-image {
+    .honor-image {
       max-height: 200px;
       margin-bottom: 1rem;
     }
@@ -131,7 +129,7 @@ nav_order: 4
     max-height: 80vh;
   }
   
-  #lightbox-caption {
+  #honor-lightbox-caption {
     margin: auto;
     display: block;
     width: 80%;
@@ -165,13 +163,13 @@ nav_order: 4
 <script>
   // Wait for the DOM content to load
   document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.getElementById('lightbox-modal');
-    var modalImg = document.getElementById('lightbox-img');
-    var captionText = document.getElementById('lightbox-caption');
-    var closeBtn = document.getElementsByClassName('lightbox-close')[0];
+    var modal = document.getElementById('honor-lightbox-modal');
+    var modalImg = document.getElementById('honor-lightbox-img');
+    var captionText = document.getElementById('honor-lightbox-caption');
+    var closeBtn = modal.getElementsByClassName('lightbox-close')[0];
     
-    // Add click handlers to all project images
-    var images = document.querySelectorAll('.lightbox-trigger');
+    // Add click handlers to all honor images
+    var images = document.querySelectorAll('.honors .lightbox-trigger');
     images.forEach(function(img) {
       img.onclick = function() {
         modal.style.display = 'block';
